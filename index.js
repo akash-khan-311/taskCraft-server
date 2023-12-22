@@ -56,6 +56,17 @@ app.get('/allTasks', async (req,res)=> {
 })
 
 
+// get user tasks
+app.get('/tasks',async (req, res) => {
+    let query = {};
+    if(req.query?.email){
+        query = {email:req.query?.email}
+    }
+    const result = await userTaskCollection.find(query).toArray();
+    res.send(result)
+})
+
+
 
 
 
